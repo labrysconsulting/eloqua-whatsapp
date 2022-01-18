@@ -1,0 +1,30 @@
+{
+    "AppId1234": {
+        "installId": "1234",
+        "userName": "value",
+        "userId": 1234,
+        "userCulture": "value",
+        "siteName": "value",
+        "siteId": 1234,
+        "appId": "1234",
+        "callbackUrl": "value",
+        "createdAt": "1234",
+        "updatedAt": "1234"
+    },
+    "InstanceId1234": {
+        "instanceId": 1234,
+        "installId": "1234",
+        "userName": "value",
+        "userId": 1234,
+        "userCulture": "value",
+        "siteName": "value",
+        "siteId": 1234,
+        "appId": "1234",
+        "entityType": "1234",
+        "customObjectId": "1234",
+        "mobilePhoneField": "1234",
+        "message": "1234",
+        "createdAt": "1234",
+        "updatedAt": "1234"
+    }
+}

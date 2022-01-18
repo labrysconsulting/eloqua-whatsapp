@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/assets/css/floating-labels.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <title>Labrys</title>
+</head>
+
+<body class="login">
+    <form method="POST" class="form-signin">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="favicon.png" alt="" width="72" height="auto">
+            <h1 class="h3 mb-3 font-weight-normal">Labrys Consulting</h1>
+        </div>
+
+        <div class="form-label-group">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+                autocomplete="current-email" required autofocus>
+            <label for="inputEmail">Email address</label>
+        </div>
+
+        <div class="form-label-group">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                autocomplete="current-password" required>
+            <label for="inputPassword">Password</label>
+        </div>
+
+        <div class="custom-control custom-checkbox my-1 mr-sm-2 mb-3">
+            <input type="checkbox" class="custom-control-input" id="customControlInline">
+            <label class="custom-control-label" for="customControlInline">Remember me</label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2021</p>
+    </form>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap-notify.min.js"></script>
+
+    <script>
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/login',
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function (json) {
+                    location.href = '/'
+                },
+                error: function (err) {
+                    $.notify({
+                        message: 'Invalid Email or Password'
+                    }, {
+                        type: 'danger'
+                    });
+                }
+
+            })
+        });
+    </script>
+</body>
+
+</html>

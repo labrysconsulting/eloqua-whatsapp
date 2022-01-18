@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!--Datatable CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="/assets/css/floating-labels.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/simple-sidebar.css" rel="stylesheet">
+
+    <!--Font Awesome CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Parsley CSS-->
+    <link rel="stylesheet" href="/assets/css/parsley.css">
+
+    <title>Labrys</title>
+</head>
+
+
+<body>
+    <div class="d-flex " id="wrapper">
+
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-4">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: block;">
+                    <h2 class="mb-0">
+                        SMS Editor
+                    </h2>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form method="POST">
+                            <div class="form-group">
+                                <label for="selectMobileNumber">Mobile Number Field</label>
+                                <select class="form-control" id="selectMobileNumber" name="selectMobileNumber" autofocus
+                                    required>
+                                    <option value="" selected disabled>Select One</option>
+                                    <% contactFields.forEach(function(item){ %>
+                                        <% if(instance==null) { %>
+                                            <option value="<%= item.internalName %>">
+                                                <%= item.name %>
+                                            </option>
+                                            <% } else { %>
+                                                <% if(instance.mobilePhoneField==item.internalName) { %>
+                                                    <option value="<%= item.internalName %>" selected>
+                                                        <%= item.name %>
+                                                    </option>
+                                                    <% } else { %>
+                                                        <option value="<%= item.internalName %>">
+                                                            <%= item.name %>
+                                                        </option>
+                                                        <% } %>
+                                                            <% } %>
+                                                                <% }); %>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-10 col-sm-10">
+                                    <div class="form-group">
+                                        <label for="selectDataObjectField">Contact Fields</label>
+                                        <select class="form-control" id="selectDataObjectField"
+                                            name="selectDataObjectField" autofocus>
+                                            <option value="" selected disabled>Select One</option>
+                                            <% contactFields.forEach(function(item){ %>
+                                                <option value="<%= item.internalName %>">
+                                                    <%= item.name %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 col-sm-2" style="display: flex; align-items: flex-end;">
+                                    <div class="form-group">
+                                        <button id="buttonAdd" class="btn btn-primary" type="submit">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="textareaMessage">Message</label>
+                                <% if(instance==null) { %>
+                                    <textarea class="form-control" rows="3" id="textareaMessage" name="textareaMessage"
+                                        required></textarea>
+                                    <% } else { %>
+                                        <textarea class="form-control" rows="3" id="textareaMessage"
+                                            name="textareaMessage" required><%= instance.message %></textarea>
+
+                                        <% } %>
+                            </div>
+
+
+                            <button id="buttonSave" class="btn btn-primary" type="submit">Save</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap-notify.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/js/parsley.min.js"></script>
+
+    <script>
+        var domain = 'https://dry-badlands-92899.herokuapp.com';
+
+        $('#buttonAdd').on('click', function (e) {
+            e.preventDefault();
+            var value = $('#textareaMessage').val() + '<#' + $('#selectDataObjectField').val() + '#>';
+            $('#textareaMessage').val(value);
+        });
+
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: location.href,
+                method: 'POST',
+                dataType: 'json',
+                data: $(this).serialize(),
+                success: function (json) {
+                    $.notify({
+                        message: 'Saved'
+                    }, {
+                        type: 'success'
+                    });
+                },
+                error: function (err) {
+                    $.notify({
+                        message: 'Something went wrong'
+                    }, {
+                        type: 'danger'
+                    });
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
