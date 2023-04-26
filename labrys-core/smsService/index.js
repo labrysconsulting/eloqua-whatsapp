@@ -48,9 +48,8 @@ module.exports = class SmsService {
                 console.log("start message prep")
                 const headers = {
                     headers: {
-                        "PublicId": "180a12a8-c8b1-4276-9333-bbf31888e179",
-                        "Secret": "23aa02fa1ca44101b4658e91a8d0f31c",
-                        "Content-Type": "application/json"
+                        "Authorization": "<auth_token>",
+                        "Content-Type": "application/json",                  
                     }
                 }
 
@@ -69,23 +68,28 @@ module.exports = class SmsService {
                     }
                     console.log(tempMessage)
                     const body = {
-                        'recipient': {
-                            'contact': '+905394073673',
-                            'channel': 'whatsapp'
+                        "CampaignId": "1bd52844 ed0a 4d7a ab7b 56e8299fdc70",
+                        "To": {
+                            "PhoneNumber":"919916564955"
                         },
-                        'content': {
-                            'type': 'template',
-                            'namespace': '0fc23cf2_5207_42fb_b5d7_751574f8dee9',
-                            'name': 'dev_test_non_media_shipping_template',
-                            'parameters': [
-                                {
-                                    'default': '1 x Samsung S10+'
-                                }
-                            ]
+                        "Parameters":{
+                            "order_number":"#1234",
+                            "amount":"$100"
+                        },
+                        "Variables":{
+                            "order_number":"1234",
+                            "customer_id":"my_customer_id"
+                        },
+                        "Callback":{
+                            "URL":"https://example.com/msg_callback",
+                            "State":{
+                                "a":"b",
+                                "c":"d"
+                            }
                         }
                     }
                     console.log(body)
-                    await axios.post('https://sandbox.apis.unifonic.com/v1/messages', body, headers)
+                    await axios.post('https://<client_id>.verloop.io/api/v1/Campaign/SendMessage', body, headers)
                     await wait(3)
                 }
                 resolve()
