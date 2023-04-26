@@ -45,71 +45,33 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <form method="POST">
-                            <div class="form-group">
-                                <label for="selectMobileNumber">Mobile Number Field</label>
-                                <select class="form-control" id="selectMobileNumber" name="selectMobileNumber" autofocus
-                                    required>
-                                    <option value="" selected disabled>Select One</option>
-                                    <% contactFields.forEach(function(item){ %>
-                                        <% if(instance==null) { %>
-                                            <option value="<%= item.internalName %>">
-                                                <%= item.name %>
-                                            </option>
-                                            <% } else { %>
-                                                <% if(instance.mobilePhoneField==item.internalName) { %>
-                                                    <option value="<%= item.internalName %>" selected>
-                                                        <%= item.name %>
-                                                    </option>
-                                                    <% } else { %>
-                                                        <option value="<%= item.internalName %>">
-                                                            <%= item.name %>
-                                                        </option>
-                                                        <% } %>
-                                                            <% } %>
-                                                                <% }); %>
-                                </select>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-10 col-sm-10">
-                                    <div class="form-group">
-                                        <label for="selectDataObjectField">Contact Fields</label>
-                                        <select class="form-control" id="selectDataObjectField"
-                                            name="selectDataObjectField" autofocus>
-                                            <option value="" selected disabled>Select One</option>
-                                            <% contactFields.forEach(function(item){ %>
-                                                <option value="<%= item.internalName %>">
-                                                    <%= item.name %>
-                                                </option>
-                                                <% }); %>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-2 col-sm-2" style="display: flex; align-items: flex-end;">
-                                    <div class="form-group">
-                                        <button id="buttonAdd" class="btn btn-primary" type="submit">Add</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="textareaMessage">Message</label>
-                                <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="textareaMessage" name="textareaMessage"
-                                        required></textarea>
-                                    <% } else { %>
-                                        <textarea class="form-control" rows="3" id="textareaMessage"
-                                            name="textareaMessage" required><%= instance.message %></textarea>
-
-                                        <% } %>
-                            </div>
-
-
-                            <button id="buttonSave" class="btn btn-primary" type="submit">Save</button>
-                        </form>
-
+                        <form action="/submit-form" method="POST">
+                            <label for="mobileNumber">Mobile Number:</label>
+                            <input type="tel" id="mobileNumber" name="mobileNumber" required>
+                          
+                            <label for="campaignID">Campaign ID:</label>
+                            <textarea id="campaignID" name="campaignID"></textarea>
+                          
+                            <label for="callbackURL">Callback URL:</label>
+                            <textarea id="callbackURL" name="callbackURL"></textarea>
+                          
+                            <label for="mediaLink">Media Link:</label>
+                            <textarea id="mediaLink" name="mediaLink"></textarea>
+                          
+                            <label for="mediaName">Media Name:</label>
+                            <textarea id="mediaName" name="mediaName"></textarea>
+                          
+                            <label for="customerName">Customer Name:</label>
+                            <textarea id="customerName" name="customerName"></textarea>
+                          
+                            <label for="propertyName">Property Name:</label>
+                            <textarea id="propertyName" name="propertyName"></textarea>
+                          
+                            <label for="propertyAddress">Property Address:</label>
+                            <textarea id="propertyAddress" name="propertyAddress"></textarea>
+                          
+                            <input type="submit" value="Submit">
+                          </form>
                     </div>
                 </div>
             </div>

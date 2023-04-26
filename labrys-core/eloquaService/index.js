@@ -10,7 +10,7 @@ module.exports = class EloquaService {
             },
             requiresConfiguration: true
         }
-        this.token = 'Basic ' + Buffer.from('KUWAITANDMIDDLEEASTFINANCIALINVESTMENTCO\\Hussin.Khalil:Kmefic@1234').toString('base64')
+        this.token = 'Basic ' + Buffer.from('DarALArkanPropertiesLLC\\Ece.Sevik:Darglobal2023!!').toString('base64')
     }
 
     async init() {
