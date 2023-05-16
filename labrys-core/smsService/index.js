@@ -89,7 +89,7 @@ module.exports = class SmsService {
                         }
                     }
                     console.log(body)
-                    await axios.post('https://<client_id>.verloop.io/api/v1/Campaign/SendMessage', body, headers)
+                    await axios.post('https://bigbasket.verloop.io/api/v1/Campaign/SendMessage', body, headers)
                     await wait(3)
                 }
                 resolve()
