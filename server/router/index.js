@@ -10,7 +10,7 @@ router.get('/', passportHelper.isAuthenticated, async (req, res) => {
 })
 
 router.get('/index', async (req, res) => { res.render('index') })
-router.get('/instance', async (req, res) => { res.render('instance') })
+
 router.get('/login', async (req, res) => { res.render('login') })
 // router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }))
 // router.get('/logout', async (req, res) => { req.logOut(); res.redirect('/login') })

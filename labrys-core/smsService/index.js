@@ -48,7 +48,7 @@ module.exports = class SmsService {
                 console.log("start message prep")
                 const headers = {
                     headers: {
-                        "Authorization": "<auth_token>",
+                        "Authorization": "3259b9db-c7a8-4f2f-a628-5c158638b761",
                         "Content-Type": "application/json",                  
                     }
                 }
@@ -68,9 +68,9 @@ module.exports = class SmsService {
                     }
                     console.log(tempMessage)
                     const body = {
-                        "CampaignId": "1bd52844 ed0a 4d7a ab7b 56e8299fdc70",
+                        "CampaignId": "1bd52844-ed0a-4d7a-ab7b-56e8299fdc70",
                         "To": {
-                            "PhoneNumber":"919916564955"
+                            "PhoneNumber":"905312785272"
                         },
                         "Parameters":{
                             "order_number":"#1234",
@@ -89,7 +89,7 @@ module.exports = class SmsService {
                         }
                     }
                     console.log(body)
-                    await axios.post('https://bigbasket.verloop.io/api/v1/Campaign/SendMessage', body, headers)
+                    await axios.post('https://daralarkan.mena.verloop.io/api/v1/Campaign/SendMessage', body, headers)
                     await wait(3)
                 }
                 resolve()
