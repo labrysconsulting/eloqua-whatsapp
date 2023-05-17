@@ -68,20 +68,22 @@ module.exports = class SmsService {
                     }
                     console.log(tempMessage)
                     const body = {
-                        "CampaignId": "1bd52844-ed0a-4d7a-ab7b-56e8299fdc70",
+                        "CampaignId": contacts[i].Campaignid,
                         "To": {
-                            "PhoneNumber":"905312785272"
+                            "PhoneNumber": contacts[i].MobilePhone
                         },
                         "Parameters":{
-                            "order_number":"#1234",
-                            "amount":"$100"
+                            "order_number": contacts[i].Param1,
+                            "amount":contacts[i].Param2,
+                            "parameter3": contacts[i].Param3,
+                            "parameter4": contacts[i].Param4
                         },
                         "Variables":{
                             "order_number":"1234",
                             "customer_id":"my_customer_id"
                         },
                         "Callback":{
-                            "URL":"https://example.com/msg_callback",
+                            "URL":"",
                             "State":{
                                 "a":"b",
                                 "c":"d"
