@@ -23,6 +23,7 @@
 
     <!--Parsley CSS-->
     <link rel="stylesheet" href="/assets/css/parsley.css">
+    
 
     <title>Labrys</title>
 </head>
@@ -71,117 +72,142 @@
                                 </select>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-10 col-sm-10">
-                                    <div class="form-group">
-                                        <label for="selectDataObjectField">Contact Fields:</label>
-                                        <select class="form-control" id="selectDataObjectField"
-                                            name="selectDataObjectField" autofocus>
-                                            <option value="" selected disabled>Select One</option>
-                                            <% contactFields.forEach(function(item){ %>
-                                                <option value="<%= item.internalName %>">
-                                                    <%= item.name %>
-                                                </option>
-                                                <% }); %>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-2 col-sm-2" style="display: flex; align-items: flex-end;">
-                                    <div class="form-group">
-                                        <button id="buttonAdd" class="btn btn-primary" type="submit">Add</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <br>
                             
                             <div class="form-group">
                                 <label for="campaignID">Campaign ID:</label>
                                 <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="textareaCampaign" name="textareaCampaign"
+                                    <textarea class="form-control" rows="2" id="textareaCampaign" name="textareaCampaign"
                                         required></textarea>
                                     <% } else { %>
-                                        <textarea class="form-control" rows="3" id="textareaCampaign"
+                                        <textarea class="form-control" rows="2" id="textareaCampaign"
                                             name="textareaCampaign" required><%= instance.message %></textarea>
                                         <% } %>
                             </div>
 
                             <div class="form-group">
-                                <label for="medialink">Media Link:</label>
+                                <label for="callbackURL">Callback URL:</label>
                                 <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="medialink" name="medialink"
+                                    <textarea class="form-control" rows="2" id="callbackURL" name="callbackURL"
                                         ></textarea>
                                     <% } else { %>
-                                        <textarea class="form-control" rows="3" id="medialink"
-                                            name="medialink" ><%= instance.message %></textarea>
-                                        <% } %>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="parameter1">Parameter 1:</label>
-                                <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="parameter1" name="parameter1"
-                                        ></textarea>
-                                    <% } else { %>
-                                        <textarea class="form-control" rows="3" id="parameter1"
-                                            name="parameter1" ><%= instance.message %></textarea>
-                                        <% } %>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="parameter2">Parameter 2:</label>
-                                <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="parameter2" name="parameter2"
-                                        ></textarea>
-                                    <% } else { %>
-                                        <textarea class="form-control" rows="3" id="parameter2"
-                                            name="parameter2" ><%= instance.message %></textarea>
-                                        <% } %>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="parameter3">Parameter 3:</label>
-                                <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="parameter3" name="parameter3"
-                                        ></textarea>
-                                    <% } else { %>
-                                        <textarea class="form-control" rows="3" id="parameter3"
-                                            name="parameter3" ><%= instance.message %></textarea>
-                                        <% } %>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="parameter4">Parameter 4:</label>
-                                <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="parameter4" name="parameter4"
-                                        ></textarea>
-                                    <% } else { %>
-                                        <textarea class="form-control" rows="3" id="parameter4"
-                                            name="parameter4" ><%= instance.message %></textarea>
+                                        <textarea class="form-control" rows="2" id="callbackURL"
+                                            name="callbackURL" ><%= instance.message %></textarea>
                                         <% } %>
                             </div>
 
                             <div class="form-group">
                                 <label for="mediaName">Media Name:</label>
                                 <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="mediaName" name="mediaName"
+                                    <textarea class="form-control" rows="2" id="mediaName" name="mediaName"
                                         ></textarea>
                                     <% } else { %>
-                                        <textarea class="form-control" rows="3" id="mediaName"
+                                        <textarea class="form-control" rows="2" id="mediaName"
                                             name="mediaName" ><%= instance.message %></textarea>
                                         <% } %>
                             </div>
 
-
                             <div class="form-group">
-                                <label for="textareaMessage">Message</label>
+                                <label for="medialink">Media Link:</label>
                                 <% if(instance==null) { %>
-                                    <textarea class="form-control" rows="3" id="textareaMessage" name="textareaMessage"
-                                        required></textarea>
+                                    <textarea class="form-control" rows="2" id="medialink" name="medialink"
+                                        ></textarea>
                                     <% } else { %>
-                                        <textarea class="form-control" rows="3" id="textareaMessage"
-                                            name="textareaMessage" required><%= instance.message %></textarea>
+                                        <textarea class="form-control" rows="2" id="medialink"
+                                            name="medialink" ><%= instance.message %></textarea>
                                         <% } %>
                             </div>
+
+                            <div class="form-group">
+                                <label for="parameter1">Contact Field for Parameter 1:</label>
+                                <select class="form-control parameter-field" data-parameter="parameter1">
+                                    <option value="" selected disabled>Select One</option>
+                                    <% contactFields.forEach(function(item){ %>
+                                        <option value="<%= item.internalName %>"><%= item.name %></option>
+                                    <% }); %>
+                                </select>
+                                <br>
+                                <button class="btn btn-primary add-parameter" data-parameter="parameter1">Add</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parameter2">Contact Field for Parameter 2:</label>
+                                <select class="form-control parameter-field" data-parameter="parameter2">
+                                    <option value="" selected disabled>Select One</option>
+                                    <% contactFields.forEach(function(item){ %>
+                                        <option value="<%= item.internalName %>"><%= item.name %></option>
+                                    <% }); %>
+                                </select>
+                                <br>
+                                <button class="btn btn-primary add-parameter" data-parameter="parameter2">Add</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parameter3">Contact Field for Parameter 3:</label>
+                                <select class="form-control parameter-field" data-parameter="parameter3">
+                                    <option value="" selected disabled>Select One</option>
+                                    <% contactFields.forEach(function(item){ %>
+                                        <option value="<%= item.internalName %>"><%= item.name %></option>
+                                    <% }); %>
+                                </select>
+                                <br>
+                                <button class="btn btn-primary add-parameter" data-parameter="parameter3">Add</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parameter4">Contact Field for Parameter 4:</label>
+                                <select class="form-control parameter-field" data-parameter="parameter4">
+                                    <option value="" selected disabled>Select One</option>
+                                    <% contactFields.forEach(function(item){ %>
+                                        <option value="<%= item.internalName %>"><%= item.name %></option>
+                                    <% }); %>
+                                </select>
+                                <br>
+                                <button class="btn btn-primary add-parameter" data-parameter="parameter4">Add</button>
+                            </div>
+                            
+
+                            <div class="form-group">
+                                <label for="parameter1">Parameter 1:</label>
+                                <% if(instance==null) { %>
+                                    <input class="form-control" type="text" id="parameter1" name="parameter1">
+                                <% } else { %>
+                                    <input class="form-control" type="text" id="parameter1" name="parameter1" value="<%= instance.parameter1 %>">
+                                <% } %>
+                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parameter2">Parameter 2:</label>
+                                <% if(instance==null) { %>
+                                    <input class="form-control" type="text" id="parameter2" name="parameter2">
+                                <% } else { %>
+                                    <input class="form-control" type="text" id="parameter2" name="parameter2" value="<%= instance.parameter2 %>">
+                                <% } %>
+                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parameter3">Parameter 3:</label>
+                                <% if(instance==null) { %>
+                                    <input class="form-control" type="text" id="parameter3" name="parameter3">
+                                <% } else { %>
+                                    <input class="form-control" type="text" id="parameter3" name="parameter3" value="<%= instance.parameter3 %>">
+                                <% } %>
+                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parameter4">Parameter 4:</label>
+                                <% if(instance==null) { %>
+                                    <input class="form-control" type="text" id="parameter4" name="parameter4">
+                                <% } else { %>
+                                    <input class="form-control" type="text" id="parameter4" name="parameter4" value="<%= instance.parameter4 %>">
+                                <% } %>
+                                
+                            </div>
+                            
+                                                        
 
                             <button id="buttonSave" class="btn btn-primary" type="submit">Save</button>
                         </form>
@@ -206,12 +232,17 @@
     <script src="/assets/js/parsley.min.js"></script>
 
     <script>
-        var domain = 'https://dry-badlands-92899.herokuapp.com';
-        $('#buttonAdd').on('click', function (e) {
-            e.preventDefault();
-            var value = $('#textareaMessage').val() + '<#' + $('#selectDataObjectField').val() + '#>';
-            $('#textareaMessage').val(value);
+    var domain = 'https://dry-badlands-92899.herokuapp.com';
+
+    $('.add-parameter').on('click', function (e) {
+        e.preventDefault();
+        var parameter = $(this).data('parameter');
+        var selectedField = $('.parameter-field[data-parameter="' + parameter + '"]').val();
+        var parameterInput = $('#' + parameter);
+        parameterInput.val(parameterInput.val() + '<#' + selectedField + '#>');
         });
+
+
         $('form').on('submit', function (e) {
             e.preventDefault();
             $.ajax({
